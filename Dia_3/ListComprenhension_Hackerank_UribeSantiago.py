@@ -8,5 +8,9 @@ x = int(input("Ingrese el valor de x: "))
 y = int(input("Ingrese el valor de y: "))
 z = int(input("Ingrese el valor de z: "))
 n = int(input("Ingrese el valor de n: "))
-resultado = [[i, j, k] for i in range(x + 1) for j in range(y + 1) for k in range(z + 1) if i + j + k != n]
+resultado = [[i, j, k] 
+             for i in range(x + 1) 
+             for j in range(y + 1) 
+             for k in range(z + 1) 
+             if i + j + k != n]
 print(resultado)
