@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Algoritmo que lea 4 valores enteros x,y,z n que representan las dimensiones de un cuboide y el numero que se excluye
+=======
+# Algoritmo que lea 4 valores enteros x,y,z n que representan las dimensiones de un cubo y el numero que se excluye
+>>>>>>> 524c922b85f9296f464589d4f8375a2c74bf3efa
 # Por cada i generar valores posibles de 0 hasta x
 # Por cada i genera los valores de j que va desde 0 hasta y 
 # Por cada combinacion de i y j genera los valores de k que va desde 0 hasta z
