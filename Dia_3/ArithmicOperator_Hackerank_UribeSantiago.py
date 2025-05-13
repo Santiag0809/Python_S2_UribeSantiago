@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # # Algoritmo que sume, reste y multiplique dos numeros
 num1 = int(input("Bienvenido,ingrese un numero "))
 num2 = int(input("Bienvenido,ingrese el segundo numero "))
@@ -8,7 +8,7 @@ multiplicacion = num1 * num2
 print ("El resultado de su suma es",suma)
 print ("El resultado de su resta es",resta)
 print ("El resultado de su multiplicacion es",multiplicacion)
-=======
+
 # # Algoritmo que haga operaciones basicas
 a = int(input())
 b = int(input())
@@ -19,4 +19,3 @@ mult = a*b
 print("EL resultado de la suma es",suma)
 print("El resultado de la resta es ",resta)
 print("El resultado de la multiplicacion es",mult)
->>>>>>> 524c922b85f9296f464589d4f8375a2c74bf3efa
