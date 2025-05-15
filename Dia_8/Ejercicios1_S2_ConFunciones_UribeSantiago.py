@@ -1,7 +1,4 @@
-# Usando diccionarios y listas creamos un programa que almacene los datos
-# de i personas y los imprima en pantalla
-# El programa debe pedir el nombre, apellido y edad, codigo de celular, numero celular y ciudad de nacimiento
-# Además, según el código celular, este dirá si es un número personal o de trabajo de cada persona
+from Funciones import ingresar_telefonos, actualizar_persona
 
 diccionario1 = {
     "id": "1",
@@ -30,7 +27,6 @@ personas = []
 personas.append(diccionario1)
 personas.append(diccionario2)
 
-
 boleanito = True
 while boleanito == True:
     print("#################")
@@ -52,30 +48,19 @@ while boleanito == True:
         for i in range(cantidad):
             print("")
             print("--- Persona #" + str(i + 1) + " ---")
-            telefonos = []
-            cant_numeros = int(input("¿Cuántos números de teléfono tienes?: "))
-            for t in range(cant_numeros):
-                print("--- Teléfono #" + str(t + 1) + " ---")
-                codigo = int(input("Ingrese el código de su teléfono: "))
-                numero = int(input("Ingrese el número de su teléfono: "))
-                tipo = input("¿Es su numero personal o trabajo?:").lower
-                if tipo != "personal":
-                    tipo = "trabajo" 
-                telefonos.append({"codigo": codigo, "numero": numero, "tipo": tipo})
-                id_usado=[int(p["id"])for p in personas]
-                idnuevo = 1 
-                while idnuevo in id_usado:
-                    idnuevo+=1
-
+            telefonos = ingresar_telefonos()
+            id_usado = [int(p["id"]) for p in personas]
+            idnuevo = 1
+            while idnuevo in id_usado:
+                idnuevo += 1
             persona = {
-                "id": idnuevo,
+                "id": str(idnuevo),
                 "nombre": input("Ingrese su nombre: "),
                 "apellido": input("Ingrese su apellido: "),
                 "edad": int(input("Ingrese su edad: ")),
                 "telefonos": telefonos,
                 "ciudad": input("Ingrese su ciudad de nacimiento: ")
             }
-
             personas.append(persona)
 
     elif opcionUsuario == 2:
@@ -111,7 +96,6 @@ while boleanito == True:
             if persona["id"] == idPersonita:
                 id_encontrado = persona
                 break
-
         if id_encontrado:
             print("#################")
             print("#### Datos de la persona ####")
@@ -133,7 +117,6 @@ while boleanito == True:
                 print("---------------------------")
         else:
             print("No se encontró ninguna persona con el ID ingresado.")
-            
 
     elif opcionUsuario == 4:
         print("#################")
@@ -142,27 +125,21 @@ while boleanito == True:
         idPersonita = input("Ingrese el id de la persona que desea actualizar: ")
         for j in range(len(personas)):
             if personas[j]["id"] == idPersonita:
-                print("ID:", personas[j]["id"])
-                print("Nombre:", personas[j]["nombre"])
-                print("Apellido:", personas[j]["apellido"])
-                print("Edad:", personas[j]["edad"])
-                print("Ciudad:", personas[j]["ciudad"])
-
-                personas[j]["nombre"] = input("Ingrese el nuevo nombre: ")
-                personas[j]["apellido"] = input("Ingrese el nuevo apellido: ")
-                personas[j]["edad"] = int(input("Ingrese la nueva edad: "))
-                personas[j]["ciudad"] = input("Ingrese la nueva ciudad: ")
-
-                print("Ahora actualizaremos los teléfonos:")
-                for idx, tel in enumerate(personas[j]["telefonos"]):
-                    print(f"--- Teléfono #{idx+1} ---")
-                    tel["codigo"] = int(input("Nuevo código: "))
-                    tel["numero"] = int(input("Nuevo número: "))
-                    tipo = input("¿Es su número personal o trabajo?: ").lower()
-                    if tipo != "personal":
-                        tipo = "trabajo"
-                    tel["tipo"] = tipo
+                decision = input("¿Desea actualizar toda la información o solo una opción? (todo/opcion): ").lower()
+                if decision == "todo":
+                    personas[j] = actualizar_persona(personas[j], "todo")
+                elif decision == "opcion":
+                    print("Opciones disponibles para actualizar:")
+                    print("1. nombre")
+                    print("2. apellido")
+                    print("3. edad")
+                    print("4. ciudad")
+                    print("5. telefonos")
+                    subop = input("Escriba el nombre exacto del campo que desea actualizar: ").lower()
+                    if subop in ["nombre", "apellido", "edad", "ciudad", "telefonos"]:
+                        personas[j] = actualizar_persona(personas[j], subop)
                 break
+
 
     elif opcionUsuario == 5:
         print("#################")
@@ -172,12 +149,10 @@ while boleanito == True:
         personas_antes = len(personas)
         personas = [p for p in personas if p["id"] != idsocio]
         if len(personas) < personas_antes:
-            print("Persona eliminada con cajasan.")
+            print("Persona eliminada con éxito.")
         else:
             print("No se encontró ninguna persona con ese ID.")
 
     elif opcionUsuario == 6:
         print("Cerrando programa...")
         boleanito = False
-
-           
